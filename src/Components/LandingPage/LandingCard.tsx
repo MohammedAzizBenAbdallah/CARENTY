@@ -5,6 +5,7 @@ import Cp from "../../CustomComponents/Cp";
 import CTitle from "../../CustomComponents/CTitle";
 import CImage from "../../CustomComponents/CImage";
 import { ImageAssets } from "../../assets/Images";
+import { useEffect, useState } from "react";
 interface Props {
   border?: string;
   borderRadius?: string;
@@ -40,11 +41,24 @@ const CustomLandingCard = styled.div`
 const ImageContainer = styled.div`
   border-radius: ${(props) => props.borderRadius || "10px"};
   border: ${(props) => props.border || "none"};
-  width: 40%;
-  height: 60%;
+  width: 45%;
+  height: 100%;
+  /* background-image: url(${(props) =>
+    ImageAssets[props.bgImage as keyof typeof ImageAssets]}); */
   background-image: url(${(props) =>
     ImageAssets[props.bgImage as keyof typeof ImageAssets]});
   background-position: center;
+  @media (max-width: 700px) {
+    width: 90%;
+    height: 100%;
+  }
+  @media (max-width: 320px) {
+    height: 90%;
+  }
+  @media (min-width: 2560px) {
+    width: 40%;
+    height: 100%;
+  }
 `;
 export default function LandingCard({
   border,
@@ -55,6 +69,23 @@ export default function LandingCard({
   car,
   bgImage,
 }: Props) {
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+  useEffect(function () {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <ImageContainer
       bgImage={bgImage}
@@ -62,19 +93,21 @@ export default function LandingCard({
       border={border}
     >
       <CustomLandingCard bgImage={bgImage}>
-        <CTitle as="h1" bold="bolder">
+        <CTitle color="white" as="h1" bold="bolder">
           {title}
         </CTitle>
-        <Cp bold="bolder">{paragraph}</Cp>
-        <CBtn color="white" bgColor="blue">
-          <Cp bgColor="blue" color="white" bold="bolder">
+        <Cp color="white" bold="bolder">
+          {paragraph}
+        </Cp>
+        <CBtn bgColor="blue">
+          <Cp color="white" bold="bolder">
             {buttonP}
           </Cp>
         </CBtn>
         <CImage
           // border="1px solid red"
           src={ImageAssets[car || "Car"]}
-          width="50%"
+          width={"50%"}
         />
       </CustomLandingCard>
     </ImageContainer>

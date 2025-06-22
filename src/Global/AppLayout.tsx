@@ -5,11 +5,11 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const CustomAppLayout = styled.div`
-  /* display: grid;
+  display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
   width: 100vw;
-  background-color: white; */
+  background-color: white;
 `;
 export default function AppLayout() {
   return (

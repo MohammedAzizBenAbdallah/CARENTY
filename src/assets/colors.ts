@@ -1,9 +1,9 @@
-const palette = {
+export const palette = {
   // Simple Colors
   white: "#ffffff",
   black: "#000000",
   transparent: "transparent",
-
+  backgroundGray: "#F6F7F9",
   red: "#ff0000",
   green: "#00ff00",
   blue: "#0000ff",
@@ -101,7 +101,7 @@ const colors = {
     red: palette.crimsonRed.base,
   },
   background: {
-    lightGray: palette.lightGray,
+    lightGray: palette.backgroundGray,
     white: palette.white,
     blueTint: palette.cornflowerBlue.lightest,
     navy: palette.navyBlue.lightest,

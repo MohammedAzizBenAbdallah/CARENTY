@@ -9,6 +9,7 @@ import colors from "../assets/colors";
 const CustomHeader = styled.div`
   background-color: ${colors.background.white};
   position: fixed;
+  top: 0;
   width: 100%;
   border-bottom: 1px solid gray;
   display: flex;
@@ -16,7 +17,6 @@ const CustomHeader = styled.div`
   justify-content: space-between;
   gap: 10px;
   padding: 1rem;
-
   @media (max-width: 700px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -73,6 +73,11 @@ const Searchbar = styled.div`
     width: 100%;
     border: none;
     padding-right: 20px;
+  }
+  @media (max-width: 400px) {
+     & input {
+      width: 50%;
+    }
   }
 `;
 

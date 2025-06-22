@@ -3,23 +3,35 @@ import styled from "styled-components";
 import colors from "../assets/colors";
 interface Props {
   children: React.ReactNode;
-  color?: "black" | "white" | "blue";
+  color?: "black" | "white" | "blue" | "gray";
   bold?: "bold" | "bolder" | "normal" | "lighter";
   bgColor?: "blue" | "darkBlue" | "lightBlue" | "inherit" | "transparent";
+  padding?: string;
+  gridArea?: string;
 }
 export default function Cp({
   children,
   color,
   bold,
+  padding,
   bgColor = "transparent",
+  gridArea,
 }: Props) {
   return (
-    <CustomP bgColor={bgColor} color={color} bold={bold}>
+    <CustomP
+      gridArea={gridArea}
+      padding={padding}
+      bgColor={bgColor}
+      color={color}
+      bold={bold}
+    >
       {children}
     </CustomP>
   );
 }
 const CustomP = styled.p`
+  grid-area: ${(props) => props.gridArea};
+  padding: ${(props) => props.padding || "0px"};
   color: ${(props) => getColor(props.color)};
   /* font-family: 'Electrolize', monospace; */
   font-size: 1rem;
@@ -27,7 +39,7 @@ const CustomP = styled.p`
   background-color: ${(props) => getBgColor(props.bgColor)};
 `;
 
-const getColor = (color?: "black" | "white" | "blue") => {
+const getColor = (color?: "black" | "white" | "blue" | "gray") => {
   switch (color) {
     case "black":
       return colors.textColor.black;
@@ -35,6 +47,8 @@ const getColor = (color?: "black" | "white" | "blue") => {
       return colors.textColor.white;
     case "blue":
       return colors.textColor.blue;
+    case "gray":
+      return colors.textColor.gray;
     default:
       return "inherit";
   }

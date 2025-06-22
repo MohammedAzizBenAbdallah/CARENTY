@@ -1,8 +1,7 @@
-import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "./Global/AppLayout";
-import Home from "./Pages/Home";
 import PageNotFound from "./PageNotFound";
+import Home from "./Pages/Home";
 
 export default function App() {
   return (

@@ -6,6 +6,9 @@ interface Props {
   bgColor?: string;
   border?: string;
   borderRadius?: string;
+  height?: string;
+  width?: string;
+  padding?: string;
   children: React.ReactNode;
 }
 export default function CBtn({
@@ -14,6 +17,9 @@ export default function CBtn({
   border,
   borderRadius,
   children,
+  height,
+  width,
+  padding,
 }: Props) {
   return (
     <CustomButton
@@ -21,6 +27,9 @@ export default function CBtn({
       bgColor={bgColor}
       border={border}
       borderRadius={borderRadius}
+      height={height}
+      widht={width}
+      padding={padding}
     >
       {children}
     </CustomButton>
@@ -34,6 +43,9 @@ const CustomButton = styled.button`
   padding: ${(props) => props.padding || "8px"};
   margin: ${(props) => props.margin || "0 4px"};
   background-color: ${(props) => getBgColor(props.bgColor)};
+  height: ${(props) => props.height || "auto"};
+  width: ${(props) => props.width || "auto"};
+  padding: ${(props) => props.padding};
   cursor: pointer;
   transition: all 0.2s ease;
   display: inline-flex;
